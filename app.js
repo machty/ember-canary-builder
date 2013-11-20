@@ -76,12 +76,12 @@ http.createServer(function (req, res) {
     'Access-Control-Allow-Headers': 'Content-Type'
   });
 
-  var url = req.url;
-  if (url === '/') {
-    url = "/ember-latest.js";
+  var parsedUrl = parse(req.url);
+  if (parsedUrl.pathname === '/') {
+    parsedUrl.pathname = "/ember-latest.js";
   }
 
-  getProcessedFile(parse(url)).then(function(body) {
+  getProcessedFile(parsedUrl).then(function(body) {
     res.end(body);
   }).fail(function(e) {
     console.log(e);
