@@ -44,6 +44,7 @@ function getFile(parsedUrl) {
 function getProcessedFile(parsedUrl) {
   var fullpath = parsedUrl.path;
   if (cachedProcessedFiles.hasOwnProperty(fullpath)) {
+    console.log("Returning processed cached: " + fullpath);
     return Q.resolve(cachedProcessedFiles[fullpath]);
   }
 
@@ -66,6 +67,8 @@ function getProcessedFile(parsedUrl) {
 
 http.createServer(function (req, res) {
 
+  console.log(req.url);
+
   // cachedFiles.delete["ember-latest.js"];
 
   res.writeHead(200, {
@@ -78,7 +81,7 @@ http.createServer(function (req, res) {
 
   var parsedUrl = parse(req.url);
   if (parsedUrl.pathname === '/') {
-    parsedUrl.pathname = "/ember-latest.js";
+    parsedUrl = parse("/ember-latest.js" + parsedUrl.path.slice(1));
   }
 
   getProcessedFile(parsedUrl).then(function(body) {
