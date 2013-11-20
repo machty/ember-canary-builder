@@ -1,0 +1,17 @@
+{
+  "name": "ember-canary-builder",
+  "version": "0.0.1",
+  "author": {
+    "name": "Alex Matchneer",
+    "email": "machty@gmail.com"
+  },
+  "dependencies": {
+    "defeatureify": "*",
+    "request": ">= 2.27",
+    "q": "0.9.7"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
+}
