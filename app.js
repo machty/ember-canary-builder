@@ -7,6 +7,8 @@ var request = require('request');
 
 var get = Q.denodeify(request.get);
 
+var port = process.env.PORT || 5000;
+
 var cachedFiles = {};
 var cachedProcessedFiles = {};
 
@@ -86,6 +88,6 @@ http.createServer(function (req, res) {
     res.end("// something went wrong");
   });
 
-}).listen(5000, '127.0.0.1');
-console.log('Server running at http://127.0.0.1:5000/');
+}).listen(port);
+console.log('Server running on port ' + port);
 
